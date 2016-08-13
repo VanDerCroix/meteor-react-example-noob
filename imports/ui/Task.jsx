@@ -9,17 +9,22 @@ export default class Task extends Component {
   }
 
   render() {
-    // Give tasks a different className when they are checked off,
-    // so that we can style them nicely in CSS
-    const taskClassName = 'col-xs-12 col-md-3';
 
-    return (
-      <div className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
-          &times;
-        </button>
-        <img src={this.props.task.url} />
-        <span className="text">{this.props.task.name}</span>
+    return (	  
+      <div className="row">
+        <div className="col s12 m2">
+          <div className="card">
+            <div className="card-image">
+              <img src={this.props.task.url} />
+            </div>
+            <div className="card-content">
+              <p>{this.props.task.name}</p>
+            </div>
+            <div className="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
