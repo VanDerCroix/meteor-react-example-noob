@@ -10,19 +10,46 @@ export default class Task extends Component {
 
   render() {
 
-    return (	  
-      <div className="row">
-        <div className="col s12 m2">
-          <div className="card">
-            <div className="card-image">
-              <img src={this.props.task.url} />
-            </div>
-            <div className="card-content">
-              <p>{this.props.task.name}</p>
-            </div>
-            <div className="card-action">
-              <a href="#">This is a link</a>
-            </div>
+    return (
+      <div className="col s6 m3 l3">
+        <div className="card hoverable">
+          <div className="card-image waves-effect waves-block waves-light">
+            <img className="activator" src={this.props.task.url} />
+            <span className="card-title black-text">{this.props.task.entry}</span>
+          </div>
+
+          <div className="card-content">
+            <span className="card-title activator grey-text text-darken-4">
+              {this.props.task.name}
+              <i className="material-icons right">more_vert</i>
+            </span>
+          </div>
+
+          <div className="card-reveal">
+            <span className="card-title grey-text text-darken-4">
+              {this.props.task.name}
+              <i className="material-icons right">close</i>
+            </span>
+
+            <a className="btn-floating btn-small red"
+              onClick={this.deleteThisTask.bind(this)}>
+              <i className="material-icons">delete</i>
+            </a>
+
+            <a className="btn-floating btn-small yellow darken-1">
+              <i className="material-icons">star</i>
+            </a>
+
+            <a className="btn-floating btn-small green">
+              <i className="material-icons">functions</i>
+            </a>
+
+            <a className="btn-floating btn-small blue">
+              <i className="material-icons">memory</i>
+            </a>
+
+            <p>Here is some more information about this product that
+              is only revealed once clicked on.</p>
           </div>
         </div>
       </div>
