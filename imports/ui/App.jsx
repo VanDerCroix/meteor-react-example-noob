@@ -3,14 +3,14 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { Mons } from '../api/mons.js';
 
-import Task from './Task.jsx';
+import Card from './Card.jsx';
 import AppBar from './AppBar.jsx';
 
 // App component - represents the whole app
 class App extends Component {
   renderTasks() {
-    return this.props.tasks.map((task) => (
-      <Task key={task._id} task={task} />
+    return this.props.mons.map((poke) => (
+      <Card key={poke._id} poke={poke} />
     ));
   }
 
@@ -30,11 +30,11 @@ class App extends Component {
 }
 
 App.propTypes = {
-  tasks: PropTypes.array.isRequired,
+  mons: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
   return {
-    tasks: Mons.find({}).fetch(),
+    mons: Mons.find({}).fetch(),
   };
 }, App);
