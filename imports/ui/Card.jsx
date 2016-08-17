@@ -6,6 +6,7 @@ import CardReveal from './CardReveal.jsx';
 
 // Card component - represents a single todo item
 export default class Card extends Component {
+
   deleteThisTask() {
     Mons.remove(this.props.poke._id);
   }
