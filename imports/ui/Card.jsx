@@ -24,8 +24,8 @@ export default class Card extends Component {
           </div>
 
           <div className="card-action">
-            Entry:{this.props.poke.entry}<br />
-            CP:{this.props.poke.cp}
+            Entry: {this.props.poke.entry}<br />
+            CP: {this.props.poke.cp}
           </div>
 
           <CardReveal poke={this.props.poke} />
