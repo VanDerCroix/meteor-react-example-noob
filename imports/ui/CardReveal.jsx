@@ -1,11 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import { Random } from 'meteor/random';
+
+import { Mons } from '../api/mons.js';
 
 export default class CardReveal extends Component {
+  deleteThisTask() {
+    Mons.remove(this.props.poke._id);
+  }
+
+  powerUp() {
+    Mons.update(this.props.poke._id, {
+      $set: { cp: this.props.poke.cp + Math.floor(Random.fraction() * 10) },
+    });
+  }
+
   render() {
     return (
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              Nombre: {this.props.poke.name}
+              {this.props.poke.name}
               <i className="material-icons right">close</i>
             </span>
 
@@ -15,7 +28,7 @@ export default class CardReveal extends Component {
 							    <td></td>
 							    <td>
 										<a className="btn-floating btn-small yellow darken-1">
-				              <i className="material-icons">star</i>
+				              <i className="material-icons">mode_edit</i>
 				            </a>
 							    </td>
 							    <td></td>
@@ -27,13 +40,19 @@ export default class CardReveal extends Component {
 				            </a>
 							    </td>
 							    <td></td>
-							    <td>$0.87</td>
+							    <td>
+                    <a className="btn-floating btn-small red"
+                      onClick={this.deleteThisTask.bind(this)}>
+                      <i className="material-icons">delete</i>
+                    </a>
+                  </td>
 							  </tr>
 							  <tr>
 							    <td></td>
 							    <td>
-							    	<a className="btn-floating btn-small blue">
-				              <i className="material-icons">memory</i>
+							    	<a className="btn-floating btn-small blue"
+                      onClick={this.powerUp.bind(this)}>
+                      <i className="material-icons">fitness_center</i>
 				            </a>
 							    </td>
 							    <td></td>

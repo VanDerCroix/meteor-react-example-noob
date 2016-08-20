@@ -1,38 +1,32 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Mons } from '../api/mons.js';
 
 import CardReveal from './CardReveal.jsx';
 
 // Card component - represents a single todo item
 export default class Card extends Component {
 
-  deleteThisTask() {
-    Mons.remove(this.props.poke._id);
-  }
-
   render() {
 
     return (
       <div className="col s6 m3 l3">
-        <div className="card hoverable">
+        <div className="card sticky-action hoverable">
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src={this.props.poke.url} />
-            <span className="card-title black-text">{this.props.poke.entry}</span>
+            <span className="card-title black-text"></span>
           </div>
 
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              {this.props.poke.name}
               <i className="material-icons right">more_vert</i>
             </span>
+            {this.props.poke.name}
           </div>
 
-
-            <a className="btn-floating btn-small red" style={{bottom:"10px"}}
-              onClick={this.deleteThisTask.bind(this)}>
-              <i className="material-icons">delete</i>
-            </a>
+          <div className="card-action">
+            Entry:{this.props.poke.entry}<br />
+            CP:{this.props.poke.cp}
+          </div>
 
           <CardReveal poke={this.props.poke} />
         </div>
