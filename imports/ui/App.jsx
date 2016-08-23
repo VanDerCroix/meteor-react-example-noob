@@ -12,22 +12,23 @@ import AppBar from './AppBar.jsx';
 class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
- 
+
     // Find the text field via the React ref
     const entry = ReactDOM.findDOMNode(this.refs.textInputEntry).value.trim();
-    // const name = ReactDOM.findDOMNode(this.refs.textInputName).value.trim();
- 
+    const name = ReactDOM.findDOMNode(this.refs.textInputName).value.trim();
+
     Mons.insert({
       entry:  parseInt(entry,10),
       url: "mons/"+entry+".png",
       cp: 0,
-      name: "name",
+      name: name,
       owner: Meteor.userId(),
       username: Meteor.user().username,
     });
- 
+
     // Clear form
     ReactDOM.findDOMNode(this.refs.textInputEntry).value = '';
+    ReactDOM.findDOMNode(this.refs.textInputName).value = '';
   }
 
   renderTasks() {
@@ -45,12 +46,16 @@ class App extends Component {
 
       { this.props.currentUser ?
         <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-          <input 
-            type="text" 
-            ref="textInputEntry" 
+          <input
+            type="text"
+            ref="textInputEntry"
             placeholder="Type pokemon entry id" />
+            <input
+              type="text"
+              ref="textInputName"
+              placeholder="Type pokemon name" />
           <button type="submit" >ADD</button>
-        </form> : '' 
+        </form> : ''
       }
 
 
