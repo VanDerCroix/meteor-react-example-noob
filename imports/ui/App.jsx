@@ -17,14 +17,15 @@ class App extends Component {
     const entry = ReactDOM.findDOMNode(this.refs.textInputEntry).value.trim();
     const name = ReactDOM.findDOMNode(this.refs.textInputName).value.trim();
 
-    Mons.insert({
-      entry:  parseInt(entry,10),
-      url: "mons/"+entry+".png",
-      cp: 0,
-      name: name,
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
+    // Mons.insert({
+    //   entry:  parseInt(entry,10),
+    //   url: "mons/"+entry+".png",
+    //   cp: 0,
+    //   name: name,
+    //   owner: Meteor.userId(),
+    //   username: Meteor.user().username,
+    // });
+    Meteor.call('mons.insert', entry, name);
 
     // Clear form
     ReactDOM.findDOMNode(this.refs.textInputEntry).value = '';

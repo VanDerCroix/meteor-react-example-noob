@@ -1,17 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { Random } from 'meteor/random';
+import { Meteor } from 'meteor/meteor';
 
 import { Mons } from '../api/mons.js';
 
 export default class CardReveal extends Component {
   deleteThisTask() {
-    Mons.remove(this.props.poke._id);
+    // Mons.remove(this.props.poke._id);
+    Meteor.call('mons.remove', this.props.poke._id);
   }
 
   powerUp() {
-    Mons.update(this.props.poke._id, {
-      $set: { cp: this.props.poke.cp + Math.floor(Random.fraction() * 10) },
-    });
+    // Mons.update(this.props.poke._id, {
+    //   $set: { cp: this.props.poke.cp + Math.floor(Random.fraction() * 10) },
+    // });
+    Meteor.call('mons.powerUp', this.props.poke._id);
   }
 
   render() {
